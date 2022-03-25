@@ -1,0 +1,2 @@
+create database InternetShop_Аристов_Роман
+go

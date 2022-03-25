@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        {% if post.header_image %}
+        <img src="{{post.header_image.url}}" alt="">
+        {% endif %}
+        <h1 class="display-5 fw-bold">{{ post.headline }}</h1>
+        <p class="card-text">{{ post.author }}</p>
+        <p class="card-text">{{ post.headline }}</p>
+        <p class="col-md-8 fs-4">{{ post.content | safe}}</p>
+        <form method="GET" action="{% url 'like-post' post.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-primary">LIKE</button> {{total_likes}}
+        </form>
+        {% for comment in comments%}
+            <h1 class="display-5 fw-bold">{{ comment.author }}</h1>
+            <p class="card-text">{{ comment.created_on }}</p>
+            <p class="card-text">{{ comment.body }}</p>
+        {% endfor %}
+        <form method="POST">
+            {% csrf_token %}
+            {{comment_form}}
+            <button class="btn btn-primary">Add comment</button>
+        </form>
+        <a href="{% url 'posts' %}" class="btn btn-primary btn-lg">Back</a>
+    </div>
+</div>
+
+
+{% endblock %}

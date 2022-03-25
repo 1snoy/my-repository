@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% for f in form %}
+            {{ f.label }}
+            {{ f }}
+        {% endfor %}
+        <button class="btn btn-primary">Login</button>
+    </form>
+{% endblock %}
