@@ -38,7 +38,7 @@ async def process_location(call: types.Message, state: FSMContext):
         for item in data:
             print(data[item])
     else:
-        await call.reply('Иди нахуй !')
+        await call.reply('Данные не записаны')
 
     
 @dp.message_handler()
